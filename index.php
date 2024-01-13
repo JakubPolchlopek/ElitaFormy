@@ -49,7 +49,9 @@
         </div>
         </section>
     </main>
-    <footer>&copy;Paweł Rola & Jakub Półchłopek 2023</footer>
+    <footer>
+        <p>&copy;Paweł Rola & Jakub Półchłopek 2023</p>
+    </footer>
     <script src="jsFiles/main.js"></script>
 </body>
 </html>

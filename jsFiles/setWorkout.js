@@ -1,60 +1,132 @@
-const addWorkoutBtn = document.querySelector('.add-workout_btn');
-const addExerciesBtn = document.querySelector('.add-exercise_btn');
-const addExerciesBox = document.querySelector('.add-ex_box');
-let workouts = [];
-let exs = ["cw1", "cw2"];
+document.addEventListener('DOMContentLoaded', () => {
+    const exercises = []
 
-const addExercise = () => {
-    const exBox = document.createElement('div');
-    const exTitle = document.createElement('select')
-    exs.forEach(ex => {
-        const opt = document.createElement('option')
-        opt.value = ex
-        opt.textContent = ex
-        exTitle.append(opt)
+    const startTrainingBtn = document.querySelector('.startTraining')
+    const trainingBox = document.querySelector('.trainingBox')
+    const addExerciseBtn = document.querySelector('.addExerciseBtn')
+    const resetBtn = document.querySelector('.resetBtn')
+    const saveTrainingBtn = document.querySelector('.saveTrainingBtn')
+    const exerciseList = document.querySelector('.exerciseList')
+    const trainingPreview = document.querySelector('.trainingPreview')
+
+    const resetTrainingStatue = () => {
+        exerciseList.innerHTML = ''
+        trainingPreview.innerHTML = ''
+        exercises.length = 0
+        trainingBox.classList.add('hidden')
+        startTrainingBtn.classList.remove('hidden')
+    }
+
+    const resetTraining = () => {
+        exerciseList.innerHTML = ''
+        trainingPreview.innerHTML = ''
+        exercises.length = 0
+    }
+
+    const startTraining = () => {
+        trainingBox.classList.remove('hidden')
+        startTrainingBtn.classList.add('hidden')
+    }
+
+    const createExercise =()=>{
+        const exerciseDiv = document.createElement('div')
+
+        const exerciseNameInput = document.createElement('input')
+        exerciseNameInput.placeholder = 'Nazwa ćwiczenia'
+
+        const addSetBtn = document.createElement('button')
+        addSetBtn.innerHTML = '<i class="fas fa-plus"></i>'
+
+        const deleteExerciseBtn = document.createElement('button')
+        deleteExerciseBtn.innerHTML = '<i class="fas fa-trash-alt"></i>'
+
+        deleteExerciseBtn.addEventListener('click', () => {
+            exerciseList.removeChild(exerciseDiv)
+          })
+
+        const setsDiv = document.createElement('div')
+
+        addSetBtn.addEventListener('click', () => {
+            const setDiv = document.createElement('div')
+
+            const repsInput = document.createElement('input')
+            repsInput.placeholder = 'Liczba powtórzeń'
+            repsInput.classList.add('reps')
+
+            const weightInput = document.createElement('input')
+            weightInput.placeholder = 'Ciężar'
+            weightInput.classList.add('weight')
+
+            const deleteSetBtn = document.createElement('button')
+            deleteSetBtn.innerHTML = '<i class="fas fa-trash-alt"></i>'
+
+            deleteSetBtn.addEventListener('click', () => {
+                setsDiv.removeChild(setDiv)
+            })
+
+            setDiv.append(repsInput,weightInput,deleteSetBtn)
+            setsDiv.append(setDiv)
+    })
+
+    deleteExerciseBtn.addEventListener('click', function () {
+      exerciseList.removeChild(exerciseDiv)
     });
+
+    exerciseDiv.append(exerciseNameInput,addSetBtn,deleteExerciseBtn,setsDiv)
+    exerciseList.append(exerciseDiv)
+}
+
+    const saveTraining = () => {
+        document.querySelectorAll('.exerciseList > div').forEach((exerciseDiv) => {
+            const exerciseNameInput = exerciseDiv.querySelector('input')
+            const setsDiv = exerciseDiv.querySelector('div')
+            const sets = []
+
+            setsDiv.querySelectorAll('div').forEach((setDiv) => {
+                const repsInput = setDiv.querySelector('.reps')
+                const weightInput = setDiv.querySelector('.weight')
+
+                if(repsInput.value && weightInput.value){
+                    const set = {
+                        reps : repsInput.value,
+                        weight : weightInput.value
+                    }
+
+                    sets.push(set)
+                }
+            })
+
+            if(exerciseNameInput.value && sets.length > 0){
+                const exercise = {
+                    name:exerciseNameInput.value,
+                    sets: sets
+                }
+
+                exercises.push(exercise)
+            }  
+        })
+        const trainingData = JSON.stringify(exercises)
+        fetch('./../phpFiles/saveWorkout.php', {
+            method: "POST",
+            headers: {
+                "Content-type":'application/json'
+            },
+            body: trainingData
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Odp od serwera: ", data);
+        })
+        .catch(error => {
+            console.error('Error: ', error);
+        })
+        resetTrainingStatue()
+    }
+
     
-    const exercise = {
-        title: '',
-        series: 0
-    };
 
-    const addRound = document.createElement('button');
-    addRound.textContent = 'Dodaj serię';
-    addRound.addEventListener('click', () => createRound(exBox, exercise));
-    
-    const saveEx = document.createElement('button');
-    saveEx.textContent = "Zapisz ćwiczenie";
-    saveEx.addEventListener('click', () => saveExercise(exercise));
-    
-    exBox.append(exTitle, addRound, saveEx);
-    addExerciesBox.append(exBox);
-};
-
-const createRound = (box, exercise) => {
-    const seriesNum = document.createElement('p');
-    exercise.series++;
-    seriesNum.textContent = `Seria nr ${exercise.series}`;
-    const weight = document.createElement('input');
-    weight.type = 'number';
-    weight.placeholder = 'Wprowadź ciężar';
-    box.append(seriesNum, weight);
-};
-
-const saveExercise = (exercise) => {
-    exercise.title = exercise.title || 'Brak nazwy';
-    workouts.push(exercise);
-    console.log('Zapisano ćwiczenie:', exercise);
-    resetForm();
-};
-
-const resetForm = () => {
-    addExerciesBox.innerHTML = '';
-};
-
-addWorkoutBtn.addEventListener('click', () => {
-    addExerciesBox.style.display = 'block';
-    addWorkoutBtn.style.display = 'none';
-});
-
-addExerciesBtn.addEventListener('click', addExercise);
+    startTrainingBtn.addEventListener('click', startTraining)
+    resetBtn.addEventListener('click', resetTraining)
+    addExerciseBtn.addEventListener('click', createExercise)
+    saveTrainingBtn.addEventListener('click', saveTraining)
+})
