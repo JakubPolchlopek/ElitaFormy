@@ -1,0 +1,390 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: 'Merriweather', serif;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Quicksand', sans-serif;
+    font-family: 'Roboto Slab', serif;
+    }
+    
+    body {
+        overflow: hidden;
+    }
+    header{
+    padding: 2vh 10vh;
+    align-items: center;
+    border-bottom: 2px solid red;
+    height: 8vh;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    font-size: larger;
+    }
+    
+    footer{
+    text-align: center;
+    border-top: 2px solid red;
+    height: 8vh;
+    background-color: white;
+    font-size: larger;
+    line-height: 8vh;
+    }
+    header ul{
+    
+    display: flex;
+    gap: 2vw;
+    list-style-type: none;
+    }
+    
+    main{
+    min-height: 84vh;
+    display: flex;
+    justify-content: center;
+    }
+    
+    .profile {  
+        grid-template-columns: 1fr 2fr;
+        display: grid;
+        grid-template-areas: 
+        "foto pers"
+        "foto his"
+        "bio his";
+        height: 60vh;
+        width: 70vw;
+        margin: auto;
+        gap: .3vw;
+        margin-top: auto;
+    }
+    .biometria{
+    grid-area: bio;
+    
+    
+    }
+    .personalne{
+    grid-area: pers;
+    
+    }
+    .historia{
+    grid-area: his;
+    
+    }
+    .foto{
+    grid-area: foto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    
+    }
+    .profile img{
+    width: 10vw;
+    height: 10vw;
+    border: 1px solid black;
+    border-radius: 50%;
+    }
+    .profile div{
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    
+    }
+    .personalne p{
+        border-bottom: 1px solid black;
+        height: calc(100%/6);
+        text-align: center;
+    }
+    .personalne p:last-of-type{
+        border-bottom: none;
+    }
+    
+    .logo{
+        width:40%;
+    
+    }
+    
+    .biometria p{
+        border-bottom: 1px solid black;
+        height: calc(100%/3);
+        text-align: center;
+    }
+    .biometria p:last-of-type{
+        border-bottom: none;
+    }
+    .foto button{
+        padding: 5px 10px;
+    
+    }
+    a{
+    text-decoration: none;
+    color:currentColor;
+    }
+    a:hover {
+        color: red;
+      }
+    .wyloguj:hover{
+        background-color: red;
+        color: white;
+    
+    }
+    
+    .edycja:hover{
+        background-color: rgb(255, 154, 3);
+        color: white;
+    }
+    
+    .listaLogowania {
+        position: relative;
+        display: inline-block;
+        text-align: center;
+    }
+    
+    .listaLogowania-zawartosc {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        width: 100%;
+    }
+    
+    .listaLogowania:hover .listaLogowania-zawartosc {
+        display: block;
+    }
+    
+    .listaLogowania-zawartosc a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+    
+    .listaLogowania-zawartosc a:hover {
+        background-color: #ddd;
+    }
+    .listaLogowania:hover{
+        color: red  ;
+    }
+    
+    .PulpitZaloguj{
+    width: 100%;
+    display: flex;
+    text-align: center;
+    font-size:x-large;
+    
+    }
+    
+    .ZalogujLewa{
+    width: 65%;
+    background-color: white;
+    min-height: 84vh;
+    padding: 10%;
+    }
+    
+    .ZalogujPrawa{
+    width: 35%;
+    background-color: red;
+    color: white;
+    min-height: 84vh;
+    padding: 10%;
+    }
+    
+    .ZarejestrujLewa{
+        width: 65%;
+        background-color: white;
+        padding: 0.2%;
+    }
+    
+    .ZarejestrujPrawa{
+        width: 35%;
+        background-color: red;
+        color: white;
+        padding: 10%;
+    }
+    
+    .ZarejestrujPrawa, .ZarejestrujLewa {
+        min-height: 84vh;
+    }
+    .ZalogujLewa button {
+        width: 30vh;
+        height: 6vh;
+        border-radius: 35px;
+    
+    }
+    
+    .ZalogujPrawa button{
+        text-decoration: none;
+        background-color: red;
+        color: white;
+        border: 1px solid white;
+        width: 30vh;
+        height: 6vh;
+        border-radius: 35px;
+    
+    }
+    
+    .ZalogujLewa button:hover{
+    background-color: red;
+    color: white;
+    border: 1px solid black;
+    
+    }
+    
+    .ZalogujPrawa button:hover{
+        background-color: white;
+        color: red;
+        border: 1px solid black;
+        text-decoration: none;
+    }
+    .PulpitZarejestruj{
+        width: 100%;
+        display: flex;
+        text-align: center;
+        font-size:x-large;
+    }
+    
+    .ZarejestrujLewa button, input[type='submit']{
+        width: 30vh;
+        height: 6vh;
+        border-radius: 35px;
+    
+    }
+    
+    .ZarejestrujPrawa button{
+        background-color: red;
+        color: white;
+        border: 1px solid white;
+        width: 30vh;
+        height: 6vh;
+        border-radius: 35px;
+    }
+    
+    .ZarejestrujLewa button:hover, input[type='submit']:hover{
+    background-color: red;
+    color: white;
+    border: 1px solid black;
+    
+    }
+    
+    .ZarejestrujPrawa button:hover{
+        background-color: white;
+        color: red;
+        border: 1px solid black;
+    }
+    
+    form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 2vh;
+    }
+
+    input {
+        width: 50%;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        font-size: 15px;
+        background-color: white;
+        background-position: 10px 10px; 
+        background-repeat: no-repeat;
+        padding: 7px 12px 7px 32px;
+        transition: width 0.4s ease-in-out;
+      }
+      
+    input[type='text']:focus, input[type='number']:focus, input[type='password']:focus, input[type='email']:focus{
+        width: 55%;
+    }
+
+    .input-group {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        gap: 5%;
+        width: 80%;
+    }
+
+    input[type='checkbox']{
+        width: 20%;
+    }
+
+    .Suplementy{
+        background-color: white;
+        width: 100vw;
+        gap:5vh;
+        display: flex;
+        flex-direction: column;
+    
+    }  
+    .Suplementy img {
+        width: 20%;
+        float: right;
+    
+    
+    }
+    
+    .Suplementy div{
+    background-color: orange
+    
+    
+    
+    }
+    
+    .Suplementy p {
+        width: 60%;
+        float: left;
+    
+    
+    }
+
+.glownaLewo{
+    color: white;
+    display: flex;
+    width: 35%;
+    padding-top: 14%;
+    padding-left: 8%;
+    flex-direction: column;
+    gap: 3.5vh;
+}
+
+.pulpitGlowna{
+    background-color: black;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.page-loader {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: gray;
+    transition: opacity 0.75s, visibility 0.75s;
+}
+
+.page-loader::after {
+    content: '';
+    width: 100px;
+    height: 100px;
+    border: 10px solid white;
+    border-radius: 50%;
+    border-right-color: darkblue;
+    animation: spin 2s ease-in-out infinite;
+}
+
+.page-loader--hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
