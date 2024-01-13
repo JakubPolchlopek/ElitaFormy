@@ -12,21 +12,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elita formy</title>
-    <link rel="stylesheet" href="../styles/style.css">
+    <style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .trainingBox {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        margin: 5px;
+        border-radius: 20px;
+        border: none;
+        -webkit-box-shadow: 8px 8px 24px 0px rgba(0, 0, 0, 1);
+        -moz-box-shadow: 8px 8px 24px 0px rgba(0, 0, 0, 1);
+        box-shadow: 8px 8px 24px 0px rgba(0, 0, 0, 1);
+    }
+
+    input {
+        padding: 8px;
+        margin: 5px;
+    }
+
+    .exerciseList {
+        margin-top: 10px;
+    }
+
+    .trainingPreview {
+        margin-top: 20px;
+    }
+    </style>
 </head>
 <body>
-    <header>
-        <a href="../index.php" class="logo"><img src="../images/logo.png" alt="logo" class="logo"></a>
-        <ul>
-            <li><a href="indeksCwiczen.php">Indeks Ćwiczeń</a></li>
-            <li><a href="suplementacja.php">Suplementy</a></li>
-            <li><a href="oNas.php">O nas</a></li>
-            <?php
-                echo "<li><a href='addWorkout.php'>Dodaj trening</a></li>";
-                echo "<li><a href='profile.php'>".$_SESSION['user']['name']."</a></li>";
-            ?>
-        </ul>
-    </header>
     <main>
         <button class="startTraining">Rozpocznij trening</button>
 
@@ -38,9 +68,6 @@
             <button class="saveTrainingBtn"><i class="fa-solid fa-bookmark"></i></button>
         </div>
     </main>
-    <footer>
-        <p>&copy;Paweł Rola & Jakub Półchłopek 2023</p>
-    </footer>
     <script src="./../jsFiles/setWorkout.js"></script>
 </body>
 </html>

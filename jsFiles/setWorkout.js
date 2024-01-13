@@ -106,20 +106,26 @@ document.addEventListener('DOMContentLoaded', () => {
             }  
         })
         const trainingData = JSON.stringify(exercises)
-        fetch('./../phpFiles/saveWorkout.php', {
+        fetch('../phpFiles/saveWorkout.php', {
             method: "POST",
             headers: {
                 "Content-type":'application/json'
             },
             body: trainingData
         })
-        .then(response => response.json())
-        .then(data => {
-            console.log("Odp od serwera: ", data);
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Błąd HTTP! Status: ${response.status}`);
+            }
+            return response.json();
         })
         .catch(error => {
-            console.error('Error: ', error);
+            const err = document.createElement('h1')
+            err.textContent = "Błąd podczas dodawania treningu"
+            document.querySelector('main').append(err)
+            return error;
         })
+        
         resetTrainingStatue()
     }
 
