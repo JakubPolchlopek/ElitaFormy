@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const pageLoaderControler = (callback) => {
     const pageLoader = document.querySelector('.page-loader')
-    pageLoader.classList.add('page-loader--hidden')
+    pageLoader.classList.add('hidden')
     setTimeout(() => {
         pageLoader.remove()
         document.querySelector('body').style.overflow = 'auto'

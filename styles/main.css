@@ -1,0 +1,141 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: 'Merriweather', serif;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Quicksand', sans-serif;
+    font-family: 'Roboto Slab', serif;
+}
+
+header {
+    padding: 2vh 10vh;
+    align-items: center;
+    border-bottom: 2px solid red;
+    height: 8vh;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    font-size: large;
+}
+
+header ul {
+    display: flex;
+    gap: 2vw;
+    list-style-type: none;
+}
+
+main {
+    min-height: 84vh;
+    display: flex;
+    justify-content: center;
+}
+
+footer {
+    text-align: center;
+    border-top: 2px solid;
+    height: 8vh;
+    background-color: white;
+    font-size: large;
+    display: grid;
+    align-items: center;
+}
+
+.logo {
+    width: 40%;
+}
+
+a {
+    text-decoration: none;
+    color: currentColor;
+}
+
+a:hover {
+    color: red;
+}
+
+.page-loader {
+    height: 100vh;
+    width: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2f2f2f;
+    transition: opacity 0.75s, visibility 0.75s;
+}
+
+.page-loader::after {
+    content: '';
+    width: 40vw;
+    height: 40vw;
+    border: 10px solid white;
+    border-radius: 50%;
+    border-right-color: rgb(200, 0, 0);
+    animation: spin 2s ease-in-out infinite;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Profile.php styles */
+
+.profile {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-columns: "photo personal" "photo history" "biometric history";
+    height: 60vh;
+    width: 70vw;
+    margin: auto;
+    gap: .3vw;
+    margin-top: auto;
+}
+
+.biometric {
+    grid-area: biometric;
+    display: flex;
+    flex-direction: column;
+    align-items: space-evenly;
+    justify-content: center;
+}
+
+.personal {
+    grid-area: personal;
+    display: flex;
+    flex-direction: column;
+    align-items: space-evenly;
+    justify-content: center;
+}
+
+.personal > p, .biometric > p {
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+
+.history {
+    grid-area: history;
+}
+
+.photo {
+    grid-area: photo;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.photo > img {
+    width: 10vw;
+    height: 10vw;
+    border: 1px solid black;
+    /* border-radius: 50%; */
+}
